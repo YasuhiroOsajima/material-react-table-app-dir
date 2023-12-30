@@ -38,7 +38,7 @@ export default function LogoutButton() {
       sx={{ mt: 3, mb: 2 }}
       onClick={handleLogoutSubmit}
     >
-      ログアウト
+      Logout
     </Button>
   );
 }

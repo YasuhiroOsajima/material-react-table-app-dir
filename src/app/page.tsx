@@ -35,7 +35,7 @@ export default function App() {
           }}
         >
           <Typography component="h1" variant="h5">
-            Logout
+            App page
           </Typography>
         </Box>
       </Container>
