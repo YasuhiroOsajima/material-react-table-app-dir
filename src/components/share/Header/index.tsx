@@ -15,15 +15,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import DrawerContent from "@/components/share/Header/DrawerContent";
 import LogoutButton from "@/components/share/Header/LogoutButton";
 import { DrawerOpenAtom } from "@/state/DrawerOpenAtom";
+import { HeaderTitleAtom } from "@/state/HeaderTitleAtom";
 
-type HeaderTitleProps = {
-  title: string;
-};
-
-export default function Header({ title }: HeaderTitleProps) {
+export default function Header() {
   const defaultTheme = createTheme();
 
   const [opened, setOpened] = useRecoilState(DrawerOpenAtom);
+  const [title, _] = useRecoilState(HeaderTitleAtom);
 
   return (
     <ThemeProvider theme={defaultTheme}>

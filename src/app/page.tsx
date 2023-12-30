@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 import {
   createTheme,
   Box,
@@ -9,8 +11,16 @@ import {
   Typography,
 } from "@mui/material";
 
+import { HeaderTitleAtom } from "@/state/HeaderTitleAtom";
+
 export default function App() {
   const defaultTheme = createTheme();
+
+  const [_, setTitle] = useRecoilState(HeaderTitleAtom);
+
+  useEffect(() => {
+    setTitle("App");
+  }, [setTitle]);
 
   return (
     <ThemeProvider theme={defaultTheme}>
