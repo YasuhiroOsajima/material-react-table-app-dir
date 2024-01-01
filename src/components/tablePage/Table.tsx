@@ -6,7 +6,7 @@ import {
   type MRT_ColumnDef,
   useMaterialReactTable,
 } from "material-react-table";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 import { Person as PersonDataType } from "@/types/Person";
 
@@ -74,17 +74,27 @@ export default function Table() {
       showGlobalFilter: true,
     },
     renderTopToolbarCustomActions: ({ table }) => (
-      <Button
-        onClick={() => {
-          const rowSelection = table.getState().rowSelection; //read state
-          const selectedRows = table.getSelectedRowModel().rows; //or read entire rows
-
-          console.log(rowSelection);
-          console.log(selectedRows);
-        }}
-      >
-        Download Selected Users
-      </Button>
+      <Box sx={{ display: "flex", gap: "1rem", p: "4px" }}>
+        <Button
+          color="secondary"
+          onClick={() => {
+            alert("Create New Account");
+          }}
+          variant="contained"
+        >
+          Create Account
+        </Button>
+        <Button
+          color="error"
+          disabled={!table.getIsSomeRowsSelected()}
+          onClick={() => {
+            alert("Delete Selected Accounts");
+          }}
+          variant="contained"
+        >
+          Delete Selected Accounts
+        </Button>
+      </Box>
     ),
   });
 
