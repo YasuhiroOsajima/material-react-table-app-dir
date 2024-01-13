@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
 import {
   MaterialReactTable,
@@ -10,7 +11,9 @@ import { Box, Button } from "@mui/material";
 
 import { Person as PersonDataType } from "@/types/Person";
 
-import dummyPeopleData from "@/dummy_people.json";
+//import dummyPeopleData from "@/dummy_people.json";
+
+const apiserver = process.env.NEXT_PUBLIC_API_SERVER;
 
 interface Person {
   name: string;
@@ -23,9 +26,24 @@ export default function Table() {
   const loadPeopleData = async () => {
     let peopleData: Person[] = [];
 
-    for (const personData of dummyPeopleData) {
-      const person: PersonDataType = personData;
-      peopleData.push({ name: person.name, age: person.age });
+    //for (const personData of dummyPeopleData) {
+    //  const person: PersonDataType = personData;
+    //  peopleData.push({ name: person.name, age: person.age });
+    //}
+
+    try {
+      const response = await axios({
+        url: `${apiserver}/api/users`,
+        method: "get",
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+      });
+      for (const personData of response.data.users) {
+        const person: PersonDataType = personData;
+        peopleData.push({ name: person.name, age: person.age });
+      }
+    } catch (error) {
+      console.log(error);
     }
 
     return peopleData;
