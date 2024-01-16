@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { Box, Card, CardContent, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 
 import { HeaderTitleAtom } from "@/state/HeaderTitleAtom";
@@ -18,25 +18,32 @@ export default function TablePage() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
+      <Grid container>
         <Grid xs={12}>
-          <Card sx={{ height: "100%" }}>
-            <CardContent>
-              <Typography variant="h6" component="div">
-                Person table
-              </Typography>
-            </CardContent>
-          </Card>
+          <Paper
+            square
+            elevation={0}
+            sx={{
+              height: "50px",
+              display: "flex",
+              alignItems: "center",
+              borderBottom: 1,
+            }}
+          >
+            <Typography variant="h6" component="div">
+              Person table
+            </Typography>
+          </Paper>
         </Grid>
         <Grid xs={8}>
-          <Card sx={{ height: "100%" }}>
+          <Paper square elevation={0} sx={{ height: "100%", borderRight: 1 }}>
             <Table />
-          </Card>
+          </Paper>
         </Grid>
         <Grid xs={4}>
-          <Card sx={{ height: "100%" }}>
+          <Paper square elevation={0} sx={{ height: "100%" }}>
             <MessageArea />
-          </Card>
+          </Paper>
         </Grid>
       </Grid>
     </Box>

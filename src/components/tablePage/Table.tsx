@@ -105,7 +105,29 @@ export default function Table() {
         <Button
           color="error"
           disabled={!table.getIsSomeRowsSelected()}
-          onClick={() => {
+          onClick={async () => {
+            const selected = table.getSelectedRowModel();
+            let errors: string[] = [];
+            for (let i = 0; i < selected.rows.length; i++) {
+              const username = selected.rows[i].original.name;
+              console.log(username);
+
+              try {
+                await axios({
+                  url: `${apiserver}/api/users/${username}`,
+                  method: "delete",
+                  withCredentials: true,
+                });
+              } catch (error) {
+                errors.push(username);
+              }
+            }
+
+            if (errors.length > 0) {
+              alert(`Failed to delete ${errors.join(", ")}`);
+              return;
+            }
+
             alert("Delete Selected Accounts");
           }}
           variant="contained"

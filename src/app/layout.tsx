@@ -15,9 +15,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="ja">
       <body>
         <RecoilProvider>
-          <div className="mb-2">
-            <Header />
-          </div>
+          <Header />
           {children}
         </RecoilProvider>
       </body>
