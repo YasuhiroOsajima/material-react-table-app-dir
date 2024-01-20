@@ -123,6 +123,10 @@ export default function Table() {
               }
             }
 
+            loadPeopleData().then((peopleData) => {
+              setData(peopleData);
+            });
+
             if (errors.length > 0) {
               alert(`Failed to delete ${errors.join(", ")}`);
               return;
